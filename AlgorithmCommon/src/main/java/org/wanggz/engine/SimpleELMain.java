@@ -2,6 +2,8 @@ package org.wanggz.engine;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.alibaba.simpleEL.eval.DefaultExpressEvalService;
 
@@ -20,6 +22,16 @@ public class SimpleELMain {
 
         String express = "if (@b > @a) { return @a + @b; } else {return @c; }";
         Object result = service.eval(ctx, express);
-        System.out.println("==============================" + result);
+        System.out.println("==================================================================" + result);
+        
+        System.out.println("===================================================================");
+        String reg = "date-(.*?)=\"(.*?)\"";
+        Pattern pattern = Pattern.compile(reg);
+        String input = "<src date-xxx=\"teskdkkks\" good='kskkskks'>kskkskksk</src>";
+        Matcher matcher = pattern.matcher(input);
+        if(matcher.find()) {
+            System.out.println(matcher.group(1) + "    " + matcher.group(2));
+        }
+        
     }
 }
